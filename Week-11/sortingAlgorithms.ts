@@ -87,3 +87,52 @@ function InsertionSort(arr: number[]): number[] {
   return arr;
 }
 // console.log(insertionSort([2, 3, 5, 7, 1]));
+
+// Merge Sort
+
+// function merge(arr: number[], left: number, mid: number, right: number) {
+//   const n1 = mid - left + 1;
+//   const n2 = right - mid;
+
+//   const l: number[] = new Array(n1);
+//   const r: number[] = new Array(n2);
+
+//   for (let i = 0; i < n1; i++) {
+//     l[i] = arr[left + i];
+//   }
+//   for (let j = 0; i < n2; j++) {
+//     r[j] = arr[mid + 1 + j];
+//   }
+
+//   let i = 0,
+//     j = 0,
+//     k = left;
+
+//   while (i < n1 &&j < n2) {
+//     if (l[i] <= r[j]) {
+//       arr[k++] = l[i++];
+//     } else {
+//       arr[k++] = r[j++];
+//     }
+//   }
+
+//   while (i < n1) {
+//     arr[k++] = l[i++];
+//   }
+
+//   while (j < n2) {
+//     arr[k++] = r[j++];
+//   }
+// }
+
+// function mergeSort(arr: number[], left: number, right: number): void {
+//   if (left < right) {
+//     const mid: number = Math.floor((left + right) / 2);
+//     mergeSort(arr, left, mid);
+//     mergeSort(arr, mid + 1, right);
+//     merge(arr, left, mid, right);
+//   }
+// }
+// const numbers = [38, 27, 43, 3, 9, 82, 10];
+// mergeSort(numbers, 0, numbers.length - 1);
+// console.log(numbers);
