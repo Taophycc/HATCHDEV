@@ -14,4 +14,4 @@ function binarySearch(arr: number[], target: number): number {
   }
   return -1;
 }
-console.log(binarySearch([-5, -4, -2, 5, 7, 10, 14, 20, 40], 14));
+console.log(binarySearch([-5, -4, -2, 5, 7, 10, 14, 20, 40], 40));
