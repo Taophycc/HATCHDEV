@@ -1,72 +1,59 @@
-//   if (low < high) {
-//     const pIndex = partition(arr, low, high);
-//     quickSort(arr, low, pIndex - 1);
-//     quickSort(arr, pIndex + 1, high);
-//   }
-//   return arr;
-// }
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 // function partition(arr: number[], low: number, high: number): number {
-//   // let pivot = arr[low];
-//   let pivot = arr[low];
+//   const pivot = arr[low];
 //   let i = low;
 //   let j = high;
-//   while (i < j) {
+//   while (i <= j) {
 //     while (arr[i] <= pivot && i <= high - 1) {
 //       i++;
 //     }
-//     while (arr[j] >= pivot && j >= low + 1) {
+//     while (arr[j] > pivot && j >= low + 1) {
 //       j--;
 //     }
 //     if (i < j) {
-//       const temp = arr[i];
-//       arr[i] = arr[j];
-//       arr[j] = temp;
+//       [arr[i], arr[j]] = [arr[j], arr[i]];
 //     }
 //   }
-//   const temp = arr[low];
-//   arr[low] = arr[j];
-//   arr[j] = temp;
+//   [arr[low], arr[j]] = [arr[j], arr[low]];
 //   return j;
-function partition(arr, low, high) {
-    var _a, _b;
-    var pivot = arr[low];
-    var i = low;
-    var j = high;
-    while (i < j) {
-        while (arr[i] <= pivot && i <= high - 1) {
-            i++;
-        }
-        while (arr[j] > pivot && j >= low + 1) {
-            j--;
-        }
-        if (i < j) {
-            _a = [arr[j], arr[i]], arr[i] = _a[0], arr[j] = _a[1]; // swap
+// }
+// function qs(arr: number[], low: number, high: number): void {
+//   if (low < high) {
+//     const pIndex = partition(arr, low, high);
+//     qs(arr, low, pIndex - 1);
+//     qs(arr, pIndex + 1, high);
+//   }
+// }
+// function quickSort(arr: number[]): number[] {
+//   const copy = [...arr];
+//   qs(copy, 0, copy.length - 1);
+//   return copy;
+// }
+// const arr = [4, 6, 2, 5, 7, 9, 1, 3];
+// const sorted = quickSort(arr);
+// console.log(sorted);
+function quickSort(arr, low, high) {
+    var _a;
+    if (low >= high)
+        return;
+    var l = low;
+    var h = high;
+    var mid = l + Math.floor((h - l) / 2);
+    var pivot = arr[mid];
+    while (l <= h) {
+        while (arr[l] < pivot)
+            l++;
+        while (arr[h] > pivot)
+            h--;
+        if (l <= h) {
+            _a = [arr[h], arr[l]], arr[l] = _a[0], arr[h] = _a[1];
+            l++;
+            h--;
         }
     }
-    _b = [arr[j], arr[low]], arr[low] = _b[0], arr[j] = _b[1]; // swap pivot with j
-    return j;
+    quickSort(arr, low, h);
+    quickSort(arr, l, high);
 }
-function qs(arr, low, high) {
-    if (low < high) {
-        var pIndex = partition(arr, low, high);
-        qs(arr, low, pIndex - 1);
-        qs(arr, pIndex + 1, high);
-    }
-}
-function quickSort(arr) {
-    var copy = __spreadArray([], arr, true); // clone to avoid mutating original
-    qs(copy, 0, copy.length - 1);
-    return copy;
-}
-// 🧪 Test it
-var arr = [4, 6, 2, 5, 7, 9, 1, 3];
-var sorted = quickSort(arr);
+var nums = [2, 1, 6, 4, 8, 0, 3, 9, 5, 7];
+console.log(nums);
+quickSort(nums, 0, nums.length - 1);
+console.log(nums);
